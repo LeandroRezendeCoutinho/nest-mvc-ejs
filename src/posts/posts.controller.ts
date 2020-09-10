@@ -1,6 +1,5 @@
-import { Controller, Get, Render } from "@nestjs/common";
+import { Controller, Get, Render, Param, ParseIntPipe } from "@nestjs/common";
 import { PostsService } from "./posts.service";
-import { get } from "http";
 import { Post } from "./post.entity";
 
 @Controller('posts')
@@ -11,5 +10,11 @@ export class PostsController {
   @Render('post/index')
   async root() {
     return { posts: await this.postsService.findAll() }
+  }
+
+  @Get('/:id')
+  @Render('post/show')
+  async show(@Param('id', ParseIntPipe) id: number) {
+    return { post: await this.postsService.findOne(id) }
   }
 }
