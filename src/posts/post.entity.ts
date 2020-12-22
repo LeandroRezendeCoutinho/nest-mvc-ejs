@@ -10,4 +10,10 @@ export class Post {
 
   @Column()
   body: string;
+
+  @Column({ type: 'date', nullable: true })
+  publication: Date;
+
+  @Column({nullable: true})
+  price: number;
 }
