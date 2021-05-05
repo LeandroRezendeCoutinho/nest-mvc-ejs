@@ -7,7 +7,7 @@ export class PostsController {
   constructor(private postsService: PostsService) { }
 
   @Get()
-  @Render('post/index')
+  @Render('post/index.ejs')
   async root() {
     return { posts: await this.postsService.findAll() }
   }
